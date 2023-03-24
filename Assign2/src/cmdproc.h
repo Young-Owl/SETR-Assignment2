@@ -4,7 +4,7 @@
 /* Some defines */
 /* Other defines should be return codes of the functions */
 #define CMD_FOUND         0
-#define CMD_EMPTY_STRING -1
+#define CMD_ERROR_STRING -1
 #define CMD_INVALID      -2
 #define CS_ERROR         -3
 #define STR_WRONG_FORMAT -4                  

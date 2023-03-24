@@ -40,7 +40,7 @@ int cmdProcessor(void)
 	
 	/* Detect empty cmd string */
 	if(cmdStringLen == 0)
-		return CMD_EMPTY_STRING; 
+		return CMD_ERROR_STRING; 
 	
 	/* Find index of SOF */
 	for(i=0; i < cmdStringLen; i++) {
@@ -87,7 +87,7 @@ int newCmdChar(unsigned char newChar)
 	}
 	
 	/* If cmd string full return error */
-	return CMD_EMPTY_STRING;
+	return CMD_ERROR_STRING;
 }
 
 /* ************************** */

@@ -9,7 +9,7 @@
 # 	file, and the test file is testMODULENAME.c
 # If the rules above are obeyed only MODULE_NAME needs to be adjusted
 
-MODULE_NAME = CmdProc
+MODULE_NAME = cmdproc
 
 # Paths
 UNITY_ROOT = ..
