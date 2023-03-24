@@ -40,7 +40,7 @@ int cmdProcessor(void)
 	
 	/* Detect empty cmd string */
 	if(cmdStringLen == 0)
-		return -1; 
+		return CMD_EMPTY_STRING; 
 	
 	/* Find index of SOF */
 	for(i=0; i < cmdStringLen; i++) {
@@ -56,18 +56,18 @@ int cmdProcessor(void)
 			Ti = cmdString[i+3];
 			Td = cmdString[i+4];
 			resetCmdString();
-			return 0;
+			return CMD_FOUND;
 		}
 		
 		if(cmdString[i+1] == 'S') { /* S command detected */
 			printf("Setpoint = %d, Output = %d, Error = %d", setpoint, output, error);
 			resetCmdString();
-			return 0;
+			return CMD_FOUND;
 		}		
 	}
 	
 	/* cmd string not null and SOF not found */
-	return -4;
+	return STR_WRONG_FORMAT;
 
 }
 
@@ -83,15 +83,15 @@ int newCmdChar(unsigned char newChar)
 	if (cmdStringLen < MAX_CMDSTRING_SIZE) {
 		cmdString[cmdStringLen] = newChar;
 		cmdStringLen +=1;
-		return 0;		
+		return CMD_FOUND;		
 	}
 	
 	/* If cmd string full return error */
-	return -1;
+	return CMD_EMPTY_STRING;
 }
 
 /* ************************** */
-/* Resets the commanbd string */  
+/* Resets the command string  */  
 /* ************************** */
 void resetCmdString(void)
 {
