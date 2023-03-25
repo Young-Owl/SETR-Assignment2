@@ -13,31 +13,132 @@ void tearDown(void)
 
 void test_CMD_newCmdChar(void)
 {	
-	TEST_ASSERT_EQUAL_INT(CMD_FOUND, newCmdChar('a'));
-	TEST_ASSERT_EQUAL_INT(CMD_FOUND, newCmdChar('.'));
-	TEST_ASSERT_EQUAL_INT(CMD_FOUND, newCmdChar('!'));
-	TEST_ASSERT_EQUAL_INT(CMD_FOUND, newCmdChar('5'));
-	TEST_ASSERT_EQUAL_INT(CMD_FOUND, newCmdChar('%'));
-	TEST_ASSERT_EQUAL_INT(CMD_FOUND, newCmdChar('º'));
-	TEST_ASSERT_EQUAL_INT(CMD_FOUND, newCmdChar('ç'));
-	TEST_ASSERT_EQUAL_INT(CMD_FOUND, newCmdChar('A'));
-	TEST_ASSERT_EQUAL_INT(CMD_FOUND, newCmdChar('¨'));
-	TEST_ASSERT_EQUAL_INT(CMD_FOUND, newCmdChar('~'));
+	/* First 10 characters to fill the string size. */
+	TEST_ASSERT_EQUAL_INT(CMD_SUCCESS, newCmdChar('a'));
+	TEST_ASSERT_EQUAL_INT(CMD_SUCCESS, newCmdChar('.'));
+	TEST_ASSERT_EQUAL_INT(CMD_SUCCESS, newCmdChar('!'));
+	TEST_ASSERT_EQUAL_INT(CMD_SUCCESS, newCmdChar('5'));
+	TEST_ASSERT_EQUAL_INT(CMD_SUCCESS, newCmdChar('X'));
+	TEST_ASSERT_EQUAL_INT(CMD_SUCCESS, newCmdChar('P'));
+	TEST_ASSERT_EQUAL_INT(CMD_SUCCESS, newCmdChar('o'));
+	TEST_ASSERT_EQUAL_INT(CMD_SUCCESS, newCmdChar('S'));
+	TEST_ASSERT_EQUAL_INT(CMD_SUCCESS, newCmdChar('#'));
+	TEST_ASSERT_EQUAL_INT(CMD_SUCCESS, newCmdChar('<'));
 
+	/* Test for error. */
 	TEST_ASSERT_EQUAL_INT(CMD_ERROR_STRING, newCmdChar('.'));
+
+	/* Reseting and trying again to check if the string is cleared. */
+	resetCmdString();
+	TEST_ASSERT_EQUAL_INT(CMD_SUCCESS, newCmdChar('a'));
 }
 
-void test_MyVectorLib_Find_AreThere(void)
+void test_CMD_CmdProcess_CommandFound(void)
 {
-	TEST_ASSERT_EQUAL_INT(1, MyVectorLib_Find(0));
-	TEST_ASSERT_EQUAL_INT(2, MyVectorLib_Find(27));
-	TEST_ASSERT_EQUAL_INT(5, MyVectorLib_Find(900));
-	TEST_ASSERT_EQUAL_INT(8, MyVectorLib_Find(999));
+	resetCmdString();
+	newCmdChar('#');
+	newCmdChar('P');
+	newCmdChar('1');
+	newCmdChar('2');
+	newCmdChar('3');
+	newCmdChar((unsigned char)('P'+'1'+'2'+'3'));
+	newCmdChar('!');
+	TEST_ASSERT_EQUAL_INT(CMD_SUCCESS, cmdProcessor());
+
+	resetCmdString();
+	newCmdChar('#');
+	newCmdChar('S');
+	newCmdChar((unsigned char)('S'));
+	newCmdChar('!');
+	TEST_ASSERT_EQUAL_INT(CMD_SUCCESS, cmdProcessor());
 }
 
-void test_MyVectorLib_Len_RightSize(void)
+void test_CMD_CmdProcess_CommandNotFound(void)
 {
-	TEST_ASSERT_EQUAL_INT(8, MyVectorLib_Len());
+	resetCmdString();
+	newCmdChar('#');
+	newCmdChar('A');
+	newCmdChar('!');
+	TEST_ASSERT_EQUAL_INT(CMD_INVALID, cmdProcessor());
+}
+
+void test_CMD_CmdProcess_ErrorParameters(void)
+{
+	resetCmdString();
+	newCmdChar('#');
+	newCmdChar('P');
+	newCmdChar('A');
+	newCmdChar('2');
+	newCmdChar('3');
+	newCmdChar((unsigned char)('P'+'A'+'2'+'3'));
+	newCmdChar('!');
+	TEST_ASSERT_EQUAL_INT(STR_WRONG_FORMAT, cmdProcessor());
+
+	resetCmdString();
+	newCmdChar('#');
+	newCmdChar('S');
+	newCmdChar('1');
+	newCmdChar((unsigned char)('S'));
+	newCmdChar('!');
+	TEST_ASSERT_EQUAL_INT(CS_ERROR, cmdProcessor());
+}
+
+void test_CMD_CmdProcess_ErrorCS(void)
+{
+	resetCmdString();
+	newCmdChar('#');
+	newCmdChar('P');
+	newCmdChar('1');
+	newCmdChar('2');
+	newCmdChar('3');
+	newCmdChar((unsigned char)('P'+'A'+'2'+'3'));
+	newCmdChar('!');
+	TEST_ASSERT_EQUAL_INT(CS_ERROR, cmdProcessor());
+
+	resetCmdString();
+	newCmdChar('#');
+	newCmdChar('S');
+	newCmdChar((unsigned char)('A'));
+	newCmdChar('!');
+	TEST_ASSERT_EQUAL_INT(CS_ERROR, cmdProcessor());
+}
+
+void test_CMD_CmdProcess_ErrorEOF(void)
+{
+	resetCmdString();
+	newCmdChar('#');
+	newCmdChar('P');
+	newCmdChar('1');
+	newCmdChar('2');
+	newCmdChar('3');
+	newCmdChar((unsigned char)('P'+'1'+'2'+'3'));
+	newCmdChar('3');
+	newCmdChar('!');
+	TEST_ASSERT_EQUAL_INT(CMD_ERROR_STRING, cmdProcessor());
+
+	resetCmdString();
+	newCmdChar('#');
+	newCmdChar('S');
+	newCmdChar((unsigned char)('S'));
+	newCmdChar('3');
+	newCmdChar('!');
+	TEST_ASSERT_EQUAL_INT(CMD_ERROR_STRING, cmdProcessor());
+}
+
+void test_CMD_CmdProcess_ErrorSOF(void)
+{
+	resetCmdString();
+	newCmdChar('P');
+	newCmdChar('1');
+	newCmdChar('2');
+	newCmdChar('3');
+	newCmdChar((unsigned char)('P'+'1'+'2'+'3'));
+	newCmdChar('3');
+	newCmdChar('!');
+	TEST_ASSERT_EQUAL_INT(STR_WRONG_FORMAT, cmdProcessor());
+
+	resetCmdString();
+	TEST_ASSERT_EQUAL_INT(CMD_ERROR_STRING, cmdProcessor());
 }
 
 int main(void)
@@ -45,6 +146,12 @@ int main(void)
 	UNITY_BEGIN();
 	
 	RUN_TEST(test_CMD_newCmdChar);
+	RUN_TEST(test_CMD_CmdProcess_CommandFound);
+	RUN_TEST(test_CMD_CmdProcess_CommandNotFound);
+	RUN_TEST(test_CMD_CmdProcess_ErrorParameters);
+	RUN_TEST(test_CMD_CmdProcess_ErrorCS);
+	RUN_TEST(test_CMD_CmdProcess_ErrorEOF);
+	RUN_TEST(test_CMD_CmdProcess_ErrorSOF);
 		
 	return UNITY_END();
 }

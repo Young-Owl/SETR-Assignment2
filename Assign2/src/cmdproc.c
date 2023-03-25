@@ -17,6 +17,9 @@
 /* Note that in a real application these vars would be extern */
 char Kp, Ti, Td;
 
+/* Checksum Parameter */
+char Cs;
+
 /* Process variables */ 
 /* Note that in a real application these vars would be extern */
 int setpoint, output, error; 
@@ -26,7 +29,7 @@ static char cmdString[MAX_CMDSTRING_SIZE];
 static unsigned char cmdStringLen = 0; 
 
 /* ************************************************************ */
-/* Processes the the chars received so far looking for commands */
+/* Processes the chars received so far looking for commands */
 /* Returns:                                                     */
 /*  	 0: if a valid command was found and executed           */
 /* 	-1: if empty string or incomplete command found             */
@@ -55,15 +58,38 @@ int cmdProcessor(void)
 			Kp = cmdString[i+2];
 			Ti = cmdString[i+3];
 			Td = cmdString[i+4];
+			if(Kp < '0' || Kp > '9' || Ti < '0' || Ti > '9' || Td < '0' || Td > '9') {
+				return STR_WRONG_FORMAT;
+			}
+
+			Cs = (unsigned char)('P' + Kp + Ti + Td);
+			if(Cs != cmdString[i+5]){
+				return CS_ERROR;
+			}
+			
+			if(cmdString[i+6] != EOF_SYM){
+				return CMD_ERROR_STRING;
+			}
+
 			resetCmdString();
-			return CMD_FOUND;
+			return CMD_SUCCESS;
 		}
 		
 		if(cmdString[i+1] == 'S') { /* S command detected */
+			Cs = (unsigned char)('S');
+			if(Cs != cmdString[i+2]){
+				return CS_ERROR;
+			}
+
+			if(cmdString[i+3] != EOF_SYM){
+				return CMD_ERROR_STRING;
+			}
+
 			printf("Setpoint = %d, Output = %d, Error = %d", setpoint, output, error);
 			resetCmdString();
-			return CMD_FOUND;
-		}		
+			return CMD_SUCCESS;
+		}	
+		return CMD_INVALID;	/* No valid command found */
 	}
 	
 	/* cmd string not null and SOF not found */
@@ -83,7 +109,7 @@ int newCmdChar(unsigned char newChar)
 	if (cmdStringLen < MAX_CMDSTRING_SIZE) {
 		cmdString[cmdStringLen] = newChar;
 		cmdStringLen +=1;
-		return CMD_FOUND;		
+		return CMD_SUCCESS;		
 	}
 	
 	/* If cmd string full return error */
