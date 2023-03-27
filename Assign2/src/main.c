@@ -1,3 +1,11 @@
+/** @file cmdproc.h
+ * @brief Base code for Unit Testing.
+ * 
+ * @author Paulo Pedreiras
+ * @date 27 March 2023
+ * @bug No known bugs.
+ */
+
 /* ***************************************************** */
 /* SETR 22/23, Paulo Pedreiras                           */
 /* Base code for Unit Testing                            */

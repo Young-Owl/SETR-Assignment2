@@ -1,3 +1,11 @@
+/** @file cmdproc.c
+ * @brief Implementation of all functions related to the command processor.
+ *
+ * @author Gonçalo Soares & Gonçalo Rodrigues
+ * @date 27 March 2022
+ * @bug No known bugs.
+ */
+
 /* ***************************************************** */
 /* SETR 22/23, Paulo Pedreiras                           */
 /* Base code for Unit Testing                            */
@@ -78,7 +86,7 @@ int cmdProcessor(void)
 		if(cmdString[i+1] == 'S') { /* S command detected */
 			Cs = (unsigned char)('S');
 			if(Cs != cmdString[i+2]){
-				return CS_ERROR;
+				return CS_E	RROR;
 			}
 
 			if(cmdString[i+3] != EOF_SYM){
