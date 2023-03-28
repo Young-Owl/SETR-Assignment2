@@ -1,0 +1,108 @@
+\hypertarget{cmdproc_8c}{}\doxysection{src/cmdproc.c File Reference}
+\label{cmdproc_8c}\index{src/cmdproc.c@{src/cmdproc.c}}
+
+
+Implementation of all functions related to the command processor.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}cmdproc.\+h\char`\"{}}\newline
+Include dependency graph for cmdproc.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{cmdproc_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{cmdproc_8c_afbdfe0465dfd34a5f244fe41fa27c12a}{cmd\+Processor}} (void)
+\begin{DoxyCompactList}\small\item\em This function processes commands received via U\+A\+RT. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{cmdproc_8c_aeef5e88ff5a207e83ac21996c98d375d}{new\+Cmd\+Char}} (unsigned char new\+Char)
+\begin{DoxyCompactList}\small\item\em This function adds a new character to the command string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cmdproc_8c_a4ed278ed0c3ceca2fab2606a167495bf}{reset\+Cmd\+String}} (void)
+\begin{DoxyCompactList}\small\item\em This function resets the command string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{cmdproc_8c_a0a6e8b8469f007188535bfa4b6bd6205}\label{cmdproc_8c_a0a6e8b8469f007188535bfa4b6bd6205}} 
+char {\bfseries Kp}
+\item 
+\mbox{\Hypertarget{cmdproc_8c_a8c49c27310ef9ed43c21a7733d5c7a9f}\label{cmdproc_8c_a8c49c27310ef9ed43c21a7733d5c7a9f}} 
+char {\bfseries Ti}
+\item 
+\mbox{\Hypertarget{cmdproc_8c_a0869ef688f17d3bf3a1acc4906306249}\label{cmdproc_8c_a0869ef688f17d3bf3a1acc4906306249}} 
+char {\bfseries Td}
+\item 
+\mbox{\Hypertarget{cmdproc_8c_a3dd5ecdbf05a500891c53a713bd92d3f}\label{cmdproc_8c_a3dd5ecdbf05a500891c53a713bd92d3f}} 
+char {\bfseries Cs}
+\item 
+\mbox{\Hypertarget{cmdproc_8c_af92a67282f64b636796ff0120d21310f}\label{cmdproc_8c_af92a67282f64b636796ff0120d21310f}} 
+int {\bfseries setpoint}
+\item 
+\mbox{\Hypertarget{cmdproc_8c_a76a055a540e12c7206a5004afea1f66e}\label{cmdproc_8c_a76a055a540e12c7206a5004afea1f66e}} 
+int {\bfseries output}
+\item 
+\mbox{\Hypertarget{cmdproc_8c_a11614f44ef4d939bdd984953346a7572}\label{cmdproc_8c_a11614f44ef4d939bdd984953346a7572}} 
+int {\bfseries error}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of all functions related to the command processor. 
+
+\begin{DoxyAuthor}{Author}
+Gonçalo Soares \& Gonçalo Rodrigues 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+27 March 2022 
+\end{DoxyDate}
+\begin{DoxyRefDesc}{Bug}
+\item[\mbox{\hyperlink{bug__bug000001}{Bug}}]No known bugs. \end{DoxyRefDesc}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{cmdproc_8c_afbdfe0465dfd34a5f244fe41fa27c12a}\label{cmdproc_8c_afbdfe0465dfd34a5f244fe41fa27c12a}} 
+\index{cmdproc.c@{cmdproc.c}!cmdProcessor@{cmdProcessor}}
+\index{cmdProcessor@{cmdProcessor}!cmdproc.c@{cmdproc.c}}
+\doxysubsubsection{\texorpdfstring{cmdProcessor()}{cmdProcessor()}}
+{\footnotesize\ttfamily int cmd\+Processor (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function processes commands received via U\+A\+RT. 
+
+\begin{DoxyReturn}{Returns}
+int Returns a value to indicate whether the command was valid or not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{cmdproc_8c_aeef5e88ff5a207e83ac21996c98d375d}\label{cmdproc_8c_aeef5e88ff5a207e83ac21996c98d375d}} 
+\index{cmdproc.c@{cmdproc.c}!newCmdChar@{newCmdChar}}
+\index{newCmdChar@{newCmdChar}!cmdproc.c@{cmdproc.c}}
+\doxysubsubsection{\texorpdfstring{newCmdChar()}{newCmdChar()}}
+{\footnotesize\ttfamily int new\+Cmd\+Char (\begin{DoxyParamCaption}\item[{unsigned char}]{new\+Char }\end{DoxyParamCaption})}
+
+
+
+This function adds a new character to the command string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Char} & The new character to be added to the command string. ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Returns a value to indicate whether the command was valid or not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{cmdproc_8c_a4ed278ed0c3ceca2fab2606a167495bf}\label{cmdproc_8c_a4ed278ed0c3ceca2fab2606a167495bf}} 
+\index{cmdproc.c@{cmdproc.c}!resetCmdString@{resetCmdString}}
+\index{resetCmdString@{resetCmdString}!cmdproc.c@{cmdproc.c}}
+\doxysubsubsection{\texorpdfstring{resetCmdString()}{resetCmdString()}}
+{\footnotesize\ttfamily void reset\+Cmd\+String (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function resets the command string. 
+

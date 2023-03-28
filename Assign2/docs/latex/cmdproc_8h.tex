@@ -1,0 +1,169 @@
+\hypertarget{cmdproc_8h}{}\doxysection{src/cmdproc.h File Reference}
+\label{cmdproc_8h}\index{src/cmdproc.h@{src/cmdproc.h}}
+
+
+Definition of the return values and the function prototypes.  
+
+
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=165pt]{cmdproc_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{cmdproc_8h_aa2008c1bc36d9ef42571a6ec52516d02}{C\+M\+D\+\_\+\+S\+U\+C\+C\+E\+SS}}~0
+\item 
+\#define \mbox{\hyperlink{cmdproc_8h_a37de639e335a1170bca2b9eba319eabe}{C\+M\+D\+\_\+\+E\+R\+R\+O\+R\+\_\+\+S\+T\+R\+I\+NG}}~-\/1
+\item 
+\#define \mbox{\hyperlink{cmdproc_8h_a257cfa90b83ea92f857763aecd409836}{C\+M\+D\+\_\+\+I\+N\+V\+A\+L\+ID}}~-\/2
+\item 
+\#define \mbox{\hyperlink{cmdproc_8h_ac7d4cd3503d8ec75659294625431ee0a}{C\+S\+\_\+\+E\+R\+R\+OR}}~-\/3
+\item 
+\#define \mbox{\hyperlink{cmdproc_8h_a94e5d4cb574573b10476a67c13adf95e}{S\+T\+R\+\_\+\+W\+R\+O\+N\+G\+\_\+\+F\+O\+R\+M\+AT}}~-\/4
+\item 
+\#define \mbox{\hyperlink{cmdproc_8h_ab81a83583ac9be36af9219017bd5b91e}{M\+A\+X\+\_\+\+C\+M\+D\+S\+T\+R\+I\+N\+G\+\_\+\+S\+I\+ZE}}~10
+\item 
+\#define \mbox{\hyperlink{cmdproc_8h_a98ce42a3f4332d00581da3291c9865cb}{S\+O\+F\+\_\+\+S\+YM}}~\textquotesingle{}\#\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{cmdproc_8h_a87045860c979c33b7bb6e4f90e7914df}{E\+O\+F\+\_\+\+S\+YM}}~\textquotesingle{}!\textquotesingle{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{cmdproc_8h_afbdfe0465dfd34a5f244fe41fa27c12a}{cmd\+Processor}} (void)
+\begin{DoxyCompactList}\small\item\em This function processes commands received via U\+A\+RT. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{cmdproc_8h_aeef5e88ff5a207e83ac21996c98d375d}{new\+Cmd\+Char}} (unsigned char new\+Char)
+\begin{DoxyCompactList}\small\item\em This function adds a new character to the command string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cmdproc_8h_a4ed278ed0c3ceca2fab2606a167495bf}{reset\+Cmd\+String}} (void)
+\begin{DoxyCompactList}\small\item\em This function resets the command string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Definition of the return values and the function prototypes. 
+
+Base code for Unit Testing.
+
+In order to avoid unwated exceptions and errors during all reading operations, the functions in this file are defined in order to return the correct values and the associated error codes if they were to fail. All of this having in Unit Testing.
+
+\begin{DoxyAuthor}{Author}
+Paulo Pedreiras 
+\end{DoxyAuthor}
+\begin{DoxyAuthor}{Authors}
+Gonçalo Soares \& Gonçalo Rodrigues 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+27 March 2023 
+\end{DoxyDate}
+\begin{DoxyRefDesc}{Bug}
+\item[\mbox{\hyperlink{bug__bug000002}{Bug}}]No known bugs. \end{DoxyRefDesc}
+
+
+\begin{DoxyAuthor}{Author}
+Paulo Pedreiras 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+27 March 2023 
+\end{DoxyDate}
+\begin{DoxyRefDesc}{Bug}
+\item[\mbox{\hyperlink{bug__bug000003}{Bug}}]No known bugs. \end{DoxyRefDesc}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{cmdproc_8h_a37de639e335a1170bca2b9eba319eabe}\label{cmdproc_8h_a37de639e335a1170bca2b9eba319eabe}} 
+\index{cmdproc.h@{cmdproc.h}!CMD\_ERROR\_STRING@{CMD\_ERROR\_STRING}}
+\index{CMD\_ERROR\_STRING@{CMD\_ERROR\_STRING}!cmdproc.h@{cmdproc.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_ERROR\_STRING}{CMD\_ERROR\_STRING}}
+{\footnotesize\ttfamily \#define C\+M\+D\+\_\+\+E\+R\+R\+O\+R\+\_\+\+S\+T\+R\+I\+NG~-\/1}
+
+Return value when an empty string or incomplete command was found. \mbox{\Hypertarget{cmdproc_8h_a257cfa90b83ea92f857763aecd409836}\label{cmdproc_8h_a257cfa90b83ea92f857763aecd409836}} 
+\index{cmdproc.h@{cmdproc.h}!CMD\_INVALID@{CMD\_INVALID}}
+\index{CMD\_INVALID@{CMD\_INVALID}!cmdproc.h@{cmdproc.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_INVALID}{CMD\_INVALID}}
+{\footnotesize\ttfamily \#define C\+M\+D\+\_\+\+I\+N\+V\+A\+L\+ID~-\/2}
+
+Return value when an invalid command was found. \mbox{\Hypertarget{cmdproc_8h_aa2008c1bc36d9ef42571a6ec52516d02}\label{cmdproc_8h_aa2008c1bc36d9ef42571a6ec52516d02}} 
+\index{cmdproc.h@{cmdproc.h}!CMD\_SUCCESS@{CMD\_SUCCESS}}
+\index{CMD\_SUCCESS@{CMD\_SUCCESS}!cmdproc.h@{cmdproc.h}}
+\doxysubsubsection{\texorpdfstring{CMD\_SUCCESS}{CMD\_SUCCESS}}
+{\footnotesize\ttfamily \#define C\+M\+D\+\_\+\+S\+U\+C\+C\+E\+SS~0}
+
+Return value when a correct command is read. \mbox{\Hypertarget{cmdproc_8h_ac7d4cd3503d8ec75659294625431ee0a}\label{cmdproc_8h_ac7d4cd3503d8ec75659294625431ee0a}} 
+\index{cmdproc.h@{cmdproc.h}!CS\_ERROR@{CS\_ERROR}}
+\index{CS\_ERROR@{CS\_ERROR}!cmdproc.h@{cmdproc.h}}
+\doxysubsubsection{\texorpdfstring{CS\_ERROR}{CS\_ERROR}}
+{\footnotesize\ttfamily \#define C\+S\+\_\+\+E\+R\+R\+OR~-\/3}
+
+Return value when a CS error is detected. \mbox{\Hypertarget{cmdproc_8h_a87045860c979c33b7bb6e4f90e7914df}\label{cmdproc_8h_a87045860c979c33b7bb6e4f90e7914df}} 
+\index{cmdproc.h@{cmdproc.h}!EOF\_SYM@{EOF\_SYM}}
+\index{EOF\_SYM@{EOF\_SYM}!cmdproc.h@{cmdproc.h}}
+\doxysubsubsection{\texorpdfstring{EOF\_SYM}{EOF\_SYM}}
+{\footnotesize\ttfamily \#define E\+O\+F\+\_\+\+S\+YM~\textquotesingle{}!\textquotesingle{}}
+
+End of Frame Symbol. \mbox{\Hypertarget{cmdproc_8h_ab81a83583ac9be36af9219017bd5b91e}\label{cmdproc_8h_ab81a83583ac9be36af9219017bd5b91e}} 
+\index{cmdproc.h@{cmdproc.h}!MAX\_CMDSTRING\_SIZE@{MAX\_CMDSTRING\_SIZE}}
+\index{MAX\_CMDSTRING\_SIZE@{MAX\_CMDSTRING\_SIZE}!cmdproc.h@{cmdproc.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_CMDSTRING\_SIZE}{MAX\_CMDSTRING\_SIZE}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+C\+M\+D\+S\+T\+R\+I\+N\+G\+\_\+\+S\+I\+ZE~10}
+
+Maximum size of the command string. \mbox{\Hypertarget{cmdproc_8h_a98ce42a3f4332d00581da3291c9865cb}\label{cmdproc_8h_a98ce42a3f4332d00581da3291c9865cb}} 
+\index{cmdproc.h@{cmdproc.h}!SOF\_SYM@{SOF\_SYM}}
+\index{SOF\_SYM@{SOF\_SYM}!cmdproc.h@{cmdproc.h}}
+\doxysubsubsection{\texorpdfstring{SOF\_SYM}{SOF\_SYM}}
+{\footnotesize\ttfamily \#define S\+O\+F\+\_\+\+S\+YM~\textquotesingle{}\#\textquotesingle{}}
+
+Start of Frame Symbol. \mbox{\Hypertarget{cmdproc_8h_a94e5d4cb574573b10476a67c13adf95e}\label{cmdproc_8h_a94e5d4cb574573b10476a67c13adf95e}} 
+\index{cmdproc.h@{cmdproc.h}!STR\_WRONG\_FORMAT@{STR\_WRONG\_FORMAT}}
+\index{STR\_WRONG\_FORMAT@{STR\_WRONG\_FORMAT}!cmdproc.h@{cmdproc.h}}
+\doxysubsubsection{\texorpdfstring{STR\_WRONG\_FORMAT}{STR\_WRONG\_FORMAT}}
+{\footnotesize\ttfamily \#define S\+T\+R\+\_\+\+W\+R\+O\+N\+G\+\_\+\+F\+O\+R\+M\+AT~-\/4}
+
+Return value when the string format is wrong. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{cmdproc_8h_afbdfe0465dfd34a5f244fe41fa27c12a}\label{cmdproc_8h_afbdfe0465dfd34a5f244fe41fa27c12a}} 
+\index{cmdproc.h@{cmdproc.h}!cmdProcessor@{cmdProcessor}}
+\index{cmdProcessor@{cmdProcessor}!cmdproc.h@{cmdproc.h}}
+\doxysubsubsection{\texorpdfstring{cmdProcessor()}{cmdProcessor()}}
+{\footnotesize\ttfamily int cmd\+Processor (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function processes commands received via U\+A\+RT. 
+
+\begin{DoxyReturn}{Returns}
+int Returns a value to indicate whether the command was valid or not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{cmdproc_8h_aeef5e88ff5a207e83ac21996c98d375d}\label{cmdproc_8h_aeef5e88ff5a207e83ac21996c98d375d}} 
+\index{cmdproc.h@{cmdproc.h}!newCmdChar@{newCmdChar}}
+\index{newCmdChar@{newCmdChar}!cmdproc.h@{cmdproc.h}}
+\doxysubsubsection{\texorpdfstring{newCmdChar()}{newCmdChar()}}
+{\footnotesize\ttfamily int new\+Cmd\+Char (\begin{DoxyParamCaption}\item[{unsigned char}]{new\+Char }\end{DoxyParamCaption})}
+
+
+
+This function adds a new character to the command string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Char} & The new character to be added to the command string. ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Returns a value to indicate whether the command was valid or not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{cmdproc_8h_a4ed278ed0c3ceca2fab2606a167495bf}\label{cmdproc_8h_a4ed278ed0c3ceca2fab2606a167495bf}} 
+\index{cmdproc.h@{cmdproc.h}!resetCmdString@{resetCmdString}}
+\index{resetCmdString@{resetCmdString}!cmdproc.h@{cmdproc.h}}
+\doxysubsubsection{\texorpdfstring{resetCmdString()}{resetCmdString()}}
+{\footnotesize\ttfamily void reset\+Cmd\+String (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function resets the command string. 
+
