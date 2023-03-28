@@ -86,7 +86,7 @@ int cmdProcessor(void)
 		if(cmdString[i+1] == 'S') { /* S command detected */
 			Cs = (unsigned char)('S');
 			if(Cs != cmdString[i+2]){
-				return CS_E	RROR;
+				return CS_ERROR;
 			}
 
 			if(cmdString[i+3] != EOF_SYM){
