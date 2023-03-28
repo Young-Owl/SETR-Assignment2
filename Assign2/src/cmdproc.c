@@ -66,15 +66,18 @@ int cmdProcessor(void)
 			Kp = cmdString[i+2];
 			Ti = cmdString[i+3];
 			Td = cmdString[i+4];
+			/* Check value of constants*/
 			if(Kp < '0' || Kp > '9' || Ti < '0' || Ti > '9' || Td < '0' || Td > '9') {
 				return STR_WRONG_FORMAT;
 			}
 
+			/* Check value of Checksum*/
 			Cs = (unsigned char)('P' + Kp + Ti + Td);
 			if(Cs != cmdString[i+5]){
 				return CS_ERROR;
 			}
 			
+			/* Check character of EOF*/
 			if(cmdString[i+6] != EOF_SYM){
 				return CMD_ERROR_STRING;
 			}
@@ -84,11 +87,13 @@ int cmdProcessor(void)
 		}
 		
 		if(cmdString[i+1] == 'S') { /* S command detected */
+			/* Check value of Checksum*/
 			Cs = (unsigned char)('S');
 			if(Cs != cmdString[i+2]){
 				return CS_ERROR;
 			}
 
+			/* Check character of EOF*/
 			if(cmdString[i+3] != EOF_SYM){
 				return CMD_ERROR_STRING;
 			}
